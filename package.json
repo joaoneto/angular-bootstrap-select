@@ -1,0 +1,26 @@
+{
+  "name": "angular-bootstrap-select",
+  "version": "0.0.1",
+  "description": "Directive to wrap bootstrap-select",
+  "devDependencies": {
+    "grunt-cli": "~0.1.9",
+    "grunt": "~0.4.1",
+    "grunt-karma": "~0.4.5",
+    "bower": "~1.0.0",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "keywords": [
+    "AngularJS",
+    "twitter",
+    "bootstrap",
+    "select",
+    "directive"
+  ],
+  "author": "João Pinto Neto",
+  "license": "MIT"
+}
