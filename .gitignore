@@ -5,4 +5,5 @@ components
 bower_components
 nbproject
 .idea
+.tmp
 demo.js

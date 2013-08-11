@@ -18,7 +18,9 @@
   ],
   "dependencies": {
     "angular": "~1.x",
-    "jquery": "~1.x"
+    "jquery": "~1.x",
+    "angular-mocks": "~1.x",
+    "bootstrap-select": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.x"
