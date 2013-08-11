@@ -17,7 +17,7 @@ angular.module('angular-bootstrap-select.extra', [])
   });
 
 angular.module('angular-bootstrap-select', [])
-  .directive('selectpicker', function ($parse) {
+  .directive('selectpicker', function () {
     return {
       restrict: 'CA',
       require: '?ngModel',
