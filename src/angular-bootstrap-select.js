@@ -24,6 +24,10 @@ angular.module('angular-bootstrap-select', [])
       compile: function (tElement, tAttrs, transclude) {
         tElement.selectpicker();
         return function (scope, element, attrs, ngModel) {
+          if(angular.isUndefined(ngModel)){
+            return;
+          }
+
           ngModel.$render = function() {
             element.val(ngModel.$viewValue || '').selectpicker('render');
           };
