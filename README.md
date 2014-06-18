@@ -4,8 +4,9 @@ angular-bootstrap-select
 Directive to wrap [bootstrap-select](http://silviomoreto.github.io/bootstrap-select/). This directive aims to proxy the behavior of the plugin bootstrap-select, in the AngularJS style, see the documentation on the [plugin page](http://silviomoreto.github.io/bootstrap-select/).
 
 ## Requirements
-- ([jQuery](http://code.jquery.com/jquery-1.10.2.js))
-- ([AngularJS](http://code.angularjs.org/1.0.7/angular.js))
+- ([jQuery](http://jquery.com/))
+- ([bootstrap-select](http://silviomoreto.github.io/bootstrap-select/))
+- ([AngularJS](http://angularjs.org/))
 
 ## Install
 
@@ -42,7 +43,7 @@ $ grunt
 ## License
 The MIT License (MIT)
 
-Copyright (c) 2013 João Pinto Neto
+Copyright (c) 2014 João Pinto Neto
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
