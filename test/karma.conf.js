@@ -10,6 +10,6 @@ files = [
   'src/angular-bootstrap-select.js',
   'test/select.js',
 ];
-browsers = ['PhantomJS'];
+browsers = ['Chrome'];
 reporters = ['progress', 'dots'];
 colors = true;

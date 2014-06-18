@@ -1,7 +1,8 @@
 angular.module('selectDemoApp', ['marked', 'angular-bootstrap-select', 'angular-bootstrap-select.extra']);
 
 function SelectCtrl($scope) {
-  $scope.form = undefined;
+  $scope.form = '1';
+  $scope.colors = [{ name: 'Red' }, { name: 'Green' }, { name: 'Blue' }];
 }
 
 

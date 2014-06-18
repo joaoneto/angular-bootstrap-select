@@ -1,3 +1,4 @@
+// supply open and close without load bootstrap.js
 angular.module('angular-bootstrap-select.extra', [])
   .directive('toggle', function () {
     return {

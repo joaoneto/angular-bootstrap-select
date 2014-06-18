@@ -1,6 +1,6 @@
 {
   "name": "angular-bootstrap-select",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "./build/angular-bootstrap-select.js",
   "description": "Directive to wrap bootstrap-select",
   "author": "https://github.com/joaoneto/angular-bootstrap-select/graphs/contributors",

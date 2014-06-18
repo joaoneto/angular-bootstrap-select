@@ -32,6 +32,13 @@ $ bower install angular-bootstrap-select
 </select>
 ```
 
+## TODO
+
+Implement ngOptions with selectpicker
+```html
+<select ng-model="form" class="selectpicker" ng-options="color.name for color in colors"></select>
+```
+
 ## Testing
 
 ```bash
