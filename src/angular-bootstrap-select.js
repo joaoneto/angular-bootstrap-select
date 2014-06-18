@@ -3,6 +3,11 @@ angular.module('angular-bootstrap-select.extra', [])
     return {
       restrict: 'A',
       link: function (scope, element, attrs) {
+        //prevent directive from attaching itself to everything that defines a toggle attribute
+        if (!element.hasClass('selectPicker')) {
+          return;
+        }
+        
         var target = element.parent();
 
         element.bind('click', function () {
