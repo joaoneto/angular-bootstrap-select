@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../bower_components/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
 
-    <script src="../bower_components/jquery/jquery.min.js"></script>
-    <script src="../bower_components/bootstrap-select/bootstrap-select.min.js"></script>
-    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/bootstrap-select/bootstrap-select.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
 
-    <script src="../build/angular-bootstrap-select.min.js"></script>
+    <script src="../src/angular-bootstrap-select.js"></script>
 
     <script src="marked.js"></script>
     <script src="selectDemo.js"></script>
@@ -25,22 +25,23 @@
             <section id="directives-bootstrap-select" ng-controller="SelectCtrl">
                 <div class="page-header">
                     <h1>Angular bootstrap-select</h1>
-                    <code>{{form || 'undefined'}}</code>
+                    <code>Form: {{form || 'undefined'}}</code><br>
+                    <code>Color: {{color || 'undefined'}}</code>
                 </div>
 
-                <select ng-model="form" class="selectpicker">
+                <select toggle selectpicker ng-model="form">
                     <option>Mustard</option>
                     <option>Ketchup</option>
                     <option>Relish</option>
                 </select>
 
-                <select ng-model="form" class="selectpicker dropup">
+                <select ng-model="form" class="dropup" toggle selectpicker="{ dropupAuto: false }">
                     <option>Mustard</option>
                     <option>Ketchup</option>
                     <option>Relish</option>
                 </select>
 
-                <select ng-model="form" class="selectpicker" ng-options="color.name for color in colors"></select>
+                <select toggle selectpicker ng-model="color" class="" ng-options="color.name for color in colors"></select>
 
             </section>
 
@@ -53,8 +54,9 @@ angular-bootstrap-select
 Directive to wrap [bootstrap-select](http://silviomoreto.github.io/bootstrap-select/). This directive aims to proxy the behavior of the plugin bootstrap-select, in the AngularJS style, see the documentation on the [plugin page](http://silviomoreto.github.io/bootstrap-select/).
 
 ## Requirements
-- ([jQuery](http://code.jquery.com/jquery-1.10.2.js))
-- ([AngularJS](http://code.angularjs.org/1.0.7/angular.js))
+- ([jQuery](http://jquery.com/))
+- ([bootstrap-select](http://silviomoreto.github.io/bootstrap-select/))
+- ([AngularJS](http://angularjs.org/))
 
 ## Install
 
@@ -71,13 +73,20 @@ $ bower install angular-bootstrap-select
 ### Html snippet
 
 ```html
-&lt;script src="../bower_components/angular-ui-tags/build/angular-bootstrap-select.min.js"&gt;&lt;/script&gt;
+<script src="../bower_components/angular-ui-tags/build/angular-bootstrap-select.min.js"></script>
 
-&lt;select class="selectpicker"&gt;
-  &lt;option&gt;Mustard&lt;/option&gt;
-  &lt;option&gt;Ketchup&lt;/option&gt;
-  &lt;option&gt;Relish&lt;/option&gt;
-&lt;/select&gt;
+<select class="selectpicker">
+  <option>Mustard</option>
+  <option>Ketchup</option>
+  <option>Relish</option>
+</select>
+```
+
+## TODO
+
+Implement ngOptions with selectpicker
+```html
+<select ng-model="form" class="selectpicker" ng-options="color.name for color in colors"></select>
 ```
 
 ## Testing
@@ -91,7 +100,7 @@ $ grunt
 ## License
 The MIT License (MIT)
 
-Copyright (c) 2013 João Pinto Neto
+Copyright (c) 2014 João Pinto Neto
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
