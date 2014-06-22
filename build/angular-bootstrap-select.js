@@ -5,7 +5,7 @@ angular.module('angular-bootstrap-select.extra', [])
       restrict: 'A',
       link: function (scope, element, attrs) {
         //prevent directive from attaching itself to everything that defines a toggle attribute
-        if (!element.hasClass('selectPicker')) {
+        if (!element.hasClass('selectpicker')) {
           return;
         }
         
@@ -23,26 +23,35 @@ angular.module('angular-bootstrap-select.extra', [])
   });
 
 angular.module('angular-bootstrap-select', [])
-  .directive('selectpicker', function () {
+.directive('selectpicker', ['$timeout', '$parse', function ($timeout, $parse) {
     return {
       restrict: 'A',
       require: '?ngModel',
+      priority: 1001,
       compile: function (tElement, tAttrs, transclude) {
-        tElement.selectpicker();
+        tElement.selectpicker($parse(tAttrs.selectpicker)());
         return function (scope, element, attrs, ngModel) {
-          if(angular.isUndefined(ngModel)){
+          if (angular.isUndefined(ngModel)){
             return;
           }
-          scope.$watch(attrs.ngModel, function() {
-            $timeout(function() {
+
+          scope.$watch(attrs.ngModel, function () {
+            $timeout(function () {
               element.selectpicker('val', element.val());
+              element.selectpicker('refresh');
             });
           });
-          ngModel.$render = function() {
-            element.selectpicker('val', ngModel.$viewValue || '');
+
+          ngModel.$render = function () {
+            $timeout(function () {
+              element.selectpicker('val', ngModel.$viewValue || '');
+              element.selectpicker('refresh');
+            });
           };
+
           ngModel.$viewValue = element.val();
         };
       }
+        
     };
-  });
+  }]);
