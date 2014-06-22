@@ -14,7 +14,8 @@
     "test*",
     "demo*",
     "Gruntfile.js",
-    "package.json"
+    "package.json",
+    "CHANGELOG.md"
   ],
   "dependencies": {
     "angular": "~1.x",
