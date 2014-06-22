@@ -1,5 +1,12 @@
 # Changelog
+## 2014-06-21
+- build (by João Neto <joaopintoneto@gmail.com>)
+- added CHANGELOG.md to bower.json ignore (by João Neto <joaopintoneto@gmail.com>)
+- added capability to handle ng-options added capability to configure bootstrap select options fix tests (by João Neto <joaopintoneto@gmail.com>)
+- updated components (by João Neto <joaopintoneto@gmail.com>)
+
 ## 2014-06-17
+- build (by João Neto <joaopintoneto@gmail.com>)
 - Added tests (by João Neto <joaopintoneto@gmail.com>)
 - removed grunt and bower to local dependencies (by João Neto <joaopintoneto@gmail.com>)
 - Updated README.md (by João Neto <joaopintoneto@gmail.com>)
