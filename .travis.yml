@@ -4,9 +4,13 @@ node_js:
 branches:
   only:
     - master
-install:
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - npm install --quiet -g bower grunt-cli karma
   - npm install
-  - bower install
+script:
+  - grunt test
 notifications:
   email:
     - joaopintoneto@gmail.com
