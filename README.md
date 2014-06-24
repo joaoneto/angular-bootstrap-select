@@ -23,7 +23,7 @@ $ bower install angular-bootstrap-select
 ### Html snippet
 
 ```html
-<script src="../bower_components/angular-ui-tags/build/angular-bootstrap-select.min.js"></script>
+<script src="../bower_components/angular-bootstrap-select/build/angular-bootstrap-select.min.js"></script>
 
 <select class="selectpicker">
   <option>Mustard</option>
