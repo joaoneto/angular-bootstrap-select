@@ -22,6 +22,7 @@ angular.module('angular-bootstrap-select.extra', [])
     };
   });
 
+// Updated to work with Angular v1.3.0 (tested with 1.3.0-beta.17)
 angular.module('angular-bootstrap-select', [])
 .directive('selectpicker', ['$timeout', '$parse', function ($timeout, $parse) {
     return {
