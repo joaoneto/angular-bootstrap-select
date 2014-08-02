@@ -4,20 +4,24 @@ angular.module('angular-bootstrap-select.extra', [])
     return {
       restrict: 'A',
       link: function (scope, element, attrs) {
-        //prevent directive from attaching itself to everything that defines a toggle attribute
+        // prevent directive from attaching itself to everything that defines a toggle attribute
         if (!element.hasClass('selectpicker')) {
           return;
         }
         
         var target = element.parent();
+        var toggleFn = function (e) {
+          target.toggleClass('open');
+          e.stopPropagation();
+        };
 
-        element.bind('click', function () {
-          target.toggleClass('open')
+        element.bind('click', toggleFn);
+        element.next().find('li').bind('click', toggleFn);
+
+        scope.$on('$destroy', function () {
+          console.log('lalal');
+          element.unbind('click', toggleFn);
         });
-
-        element.next().find('li').bind('click', function () {
-          target.toggleClass('open')
-        })
       }
     };
   });
@@ -27,29 +31,31 @@ angular.module('angular-bootstrap-select', [])
     return {
       restrict: 'A',
       require: '?ngModel',
-      priority: 1001,
+      priority: 10,
       compile: function (tElement, tAttrs, transclude) {
         tElement.selectpicker($parse(tAttrs.selectpicker)());
+        // tElement.selectpicker('refresh');
         return function (scope, element, attrs, ngModel) {
-          if (angular.isUndefined(ngModel)){
-            return;
-          }
+          if (!ngModel) return;
 
-          scope.$watch(attrs.ngModel, function () {
-            $timeout(function () {
-              element.selectpicker('val', element.val());
-              element.selectpicker('refresh');
+          scope.$watch(attrs.ngModel, function (newVal, oldVal) {
+            scope.$evalAsync(function () {
+              if (newVal !== oldVal) {
+                console.log('watch --->', newVal, oldVal)
+                if (!attrs.ngOptions) element.val(newVal);
+                element.selectpicker('refresh');
+              }
             });
           });
 
           ngModel.$render = function () {
-            $timeout(function () {
-              element.selectpicker('val', ngModel.$viewValue || '');
+            scope.$evalAsync(function () {
+              console.log('render --->', element.val());
               element.selectpicker('refresh');
             });
-          };
+          }
 
-          ngModel.$viewValue = element.val();
+          // element.selectpicker('refresh');
         };
       }
         

@@ -1,9 +1,15 @@
 angular.module('selectDemoApp', ['marked', 'angular-bootstrap-select', 'angular-bootstrap-select.extra']);
 
-function SelectCtrl($scope) {
-  $scope.form = undefined;
-  $scope.color = 1;
+function SelectCtrl($scope, $timeout) {
+  $scope.formData = {};
+  $scope.formData.color = { name: 'Green' };
+  
   $scope.colors = [{ name: 'Red' }, { name: 'Green' }, { name: 'Blue' }];
+  
+  $scope.submit = function () {
+    $scope.form1.$setPristine();
+    console.log($scope.form1);
+  }
 }
 
 

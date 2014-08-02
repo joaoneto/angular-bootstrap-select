@@ -14,7 +14,7 @@
     <script src="../bower_components/bootstrap-select/bootstrap-select.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
 
-    <script src="../build/angular-bootstrap-select.js"></script>
+    <script src="../src/angular-bootstrap-select.js"></script>
 
     <script src="marked.js"></script>
     <script src="selectDemo.js"></script>
@@ -25,23 +25,49 @@
             <section id="directives-bootstrap-select" ng-controller="SelectCtrl">
                 <div class="page-header">
                     <h1>Angular bootstrap-select</h1>
-                    <code>Form: {{form || 'undefined'}}</code><br>
-                    <code>Color: {{color || 'undefined'}}</code>
+                    <code>foo:                      {{formData.foo || 'undefined'}}</code><br>
+                    <code>color:                    {{formData.color || 'undefined'}}</code><br>
+                    <code>Form1.$dirty:             {{form1.$dirty | json}}</code><br>
+                    <code>Form1.$pristine:          {{form1.$pristine | json}}</code><br>
+                    <code>Form1.field1.$dirty:      {{form1.field1.$dirty | json}}</code><br>
+                    <code>Form1.field1.$invalid:    {{form1.field1.$invalid | json}}</code><br>
+                    <code>Form1.field1.$valid:      {{form1.field1.$valid | json}}</code><br>
+                    <code>Form1.field1.$viewValue:  {{form1.field1.$viewValue | json}}</code><br>
+                    <code>Form1.field1.$modelValue: {{form1.field1.$modelValue | json}}</code><br>
+                    <code>Form1.field1.$error:      {{form1.field1.$error | json}}</code><br>
+                    <code>Form1.field2:             {{form1.field2.$error | json}}</code><br>
                 </div>
-
-                <select toggle selectpicker ng-model="form">
+                <select toggle selectpicker ng-hide="true" ng-model="teste">
+                    <option value="">Select one</option>
                     <option>Mustard</option>
                     <option>Ketchup</option>
                     <option>Relish</option>
                 </select>
+                <form name="form1" ng-submit="submit()" novalidate>
+                    <select name="field1" ng-model="formData.foo" toggle selectpicker="{}" ng-required="true">
+                        <option value="">Select one</option>
+                        <option>Mustard</option>
+                        <option>Ketchup</option>
+                        <option>Relish</option>
+                    </select>
 
-                <select ng-model="form" class="dropup" toggle selectpicker="{ dropupAuto: false }">
-                    <option>Mustard</option>
-                    <option>Ketchup</option>
-                    <option>Relish</option>
-                </select>
+                    <select name="field2" ng-model="formData.foo" class="dropup" toggle selectpicker="{ dropupAuto: false }" ng-required="false">
+                        <option value="">Select one</option>
+                        <option>Mustard</option>
+                        <option>Ketchup</option>
+                        <option>Relish</option>
+                    </select>
 
-                <select toggle selectpicker ng-model="color" class="" ng-options="color.name for color in colors"></select>
+                    <select name="field3" toggle ng-model="formData.color.name" selectpicker class="" ng-options="color.name as color.name for color in colors">
+                        <option value="">Select one</option>
+                    </select>
+
+                    <select name="field4" toggle ng-model="formData.color.name" selectpicker class="" ng-options="color.name as color.name for color in colors">
+                        <option value="">Select one</option>
+                    </select>
+
+                    <button type="submit">Submit</button>
+                </form>
 
             </section>
 
@@ -73,20 +99,20 @@ $ bower install angular-bootstrap-select
 ### Html snippet
 
 ```html
-<script src="../bower_components/angular-bootstrap-select/build/angular-bootstrap-select.min.js"></script>
+&lt;script src="../bower_components/angular-bootstrap-select/build/angular-bootstrap-select.min.js"&gt;&lt;/script&gt;
 
-<select class="selectpicker">
-  <option>Mustard</option>
-  <option>Ketchup</option>
-  <option>Relish</option>
-</select>
+&lt;select class="selectpicker"&gt;
+  &lt;option&gt;Mustard&lt;/option&gt;
+  &lt;option&gt;Ketchup&lt;/option&gt;
+  &lt;option&gt;Relish&lt;/option&gt;
+&lt;/select&gt;
 ```
 
 ## TODO
 
 Implement ngOptions with selectpicker
 ```html
-<select ng-model="form" class="selectpicker" ng-options="color.name for color in colors"></select>
+&lt;select ng-model="form" class="selectpicker" ng-options="color.name for color in colors"&gt;&lt;/select&gt;
 ```
 
 ## Testing
