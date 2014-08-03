@@ -10,52 +10,48 @@ angular.module('angular-bootstrap-select.extra', [])
         }
         
         var target = element.parent();
-        var toggleFn = function (e) {
+        var toggleFn = function () {
           target.toggleClass('open');
-          e.stopPropagation();
+        };
+        var hideFn = function () {
+          target.removeClass('open');
         };
 
-        element.bind('click', toggleFn);
-        element.next().find('li').bind('click', toggleFn);
+        element.on('click', toggleFn);
+        element.next().on('click', hideFn);
 
         scope.$on('$destroy', function () {
-          console.log('lalal');
-          element.unbind('click', toggleFn);
+          element.off('click', toggleFn);
+          element.next().off('click', hideFn);
         });
       }
     };
   });
 
 angular.module('angular-bootstrap-select', [])
-.directive('selectpicker', ['$timeout', '$parse', function ($timeout, $parse) {
+  .directive('selectpicker', ['$parse', function ($parse) {
     return {
       restrict: 'A',
       require: '?ngModel',
       priority: 10,
       compile: function (tElement, tAttrs, transclude) {
         tElement.selectpicker($parse(tAttrs.selectpicker)());
-        // tElement.selectpicker('refresh');
+        tElement.selectpicker('refresh');
         return function (scope, element, attrs, ngModel) {
           if (!ngModel) return;
 
           scope.$watch(attrs.ngModel, function (newVal, oldVal) {
             scope.$evalAsync(function () {
-              if (newVal !== oldVal) {
-                console.log('watch --->', newVal, oldVal)
-                if (!attrs.ngOptions) element.val(newVal);
-                element.selectpicker('refresh');
-              }
+              if (!attrs.ngOptions || /track by/.test(attrs.ngOptions)) element.val(newVal);
+              element.selectpicker('refresh');
             });
           });
 
           ngModel.$render = function () {
             scope.$evalAsync(function () {
-              console.log('render --->', element.val());
               element.selectpicker('refresh');
             });
           }
-
-          // element.selectpicker('refresh');
         };
       }
         

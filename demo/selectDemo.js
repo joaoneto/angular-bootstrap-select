@@ -4,7 +4,7 @@ function SelectCtrl($scope, $timeout) {
   $scope.formData = {};
   $scope.formData.color = { name: 'Green' };
   
-  $scope.colors = [{ name: 'Red' }, { name: 'Green' }, { name: 'Blue' }];
+  $scope.colors = [{ id: 1, name: 'Red' }, { id: 2, name: 'Green' }, { id: 3, name: 'Blue' }];
   
   $scope.submit = function () {
     $scope.form1.$setPristine();

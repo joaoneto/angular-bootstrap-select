@@ -62,7 +62,7 @@
                         <option value="">Select one</option>
                     </select>
 
-                    <select name="field4" toggle ng-model="formData.color.name" selectpicker class="" ng-options="color.name as color.name for color in colors">
+                    <select name="field4" toggle ng-model="formData.color.name" selectpicker class="" ng-options="color.name as color.name for color in colors track by color.name">
                         <option value="">Select one</option>
                     </select>
 
