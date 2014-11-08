@@ -1,9 +1,15 @@
 # Changelog
+## 2014-11-08
+- fix angularjs and bootstrap-select versions (by João Neto <joaopintoneto@gmail.com>)
+
 ## 2014-08-03
 - added track by (by João Neto <joaopintoneto@gmail.com>)
 
 ## 2014-08-02
 - fixed ng-required ref #9 (by João Neto <joaopintoneto@gmail.com>)
+
+## 2014-06-24
+- updated bower.json dependencies (by João Neto <joaopintoneto@gmail.com>)
 
 ## 2014-06-23
 - Fixing script path (by Danilo Valente <danilovalente96@gmail.com>)
