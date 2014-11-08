@@ -1,5 +1,20 @@
 # Changelog
+## 2014-08-03
+- added track by (by João Neto <joaopintoneto@gmail.com>)
+
+## 2014-08-02
+- fixed ng-required ref #9 (by João Neto <joaopintoneto@gmail.com>)
+
+## 2014-06-23
+- Fixing script path (by Danilo Valente <danilovalente96@gmail.com>)
+- Fixing script path (by Danilo Valente <danilovalente96@gmail.com>)
+
 ## 2014-06-21
+- updated .travis.yml (by João Neto <joaopintoneto@gmail.com>)
+- updated .travis.yml (by João Neto <joaopintoneto@gmail.com>)
+- updated .travis.yml (by João Neto <joaopintoneto@gmail.com>)
+- renamed travis config file (by João Neto <joaopintoneto@gmail.com>)
+- updated CHANGELOG.md (by João Neto <joaopintoneto@gmail.com>)
 - build (by João Neto <joaopintoneto@gmail.com>)
 - added CHANGELOG.md to bower.json ignore (by João Neto <joaopintoneto@gmail.com>)
 - added capability to handle ng-options added capability to configure bootstrap select options fix tests (by João Neto <joaopintoneto@gmail.com>)
