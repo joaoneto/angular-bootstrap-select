@@ -1,6 +1,6 @@
 angular.module('selectDemoApp', ['marked', 'angular-bootstrap-select', 'angular-bootstrap-select.extra']);
 
-function SelectCtrl($scope, $timeout) {
+angular.module('selectDemoApp').controller('SelectCtrl', function ($scope, $timeout) {
   $scope.formData = {};
   $scope.formData.color = { name: 'Green' };
   
@@ -10,8 +10,7 @@ function SelectCtrl($scope, $timeout) {
     $scope.form1.$setPristine();
     console.log($scope.form1);
   }
-}
-
+});
 
 angular.module('marked', []).directive('marked', function () {
   return {

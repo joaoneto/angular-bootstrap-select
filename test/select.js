@@ -37,7 +37,6 @@ describe('selectpicker', function() {
       scope.colors = [{ id: 10, name: 'Red' }, { id: 20, name: 'Green' }, { id: 30, name: 'Blue' }];
       var html = '<select selectpicker ng-model="selected" ng-options="c.name as c.name for c in colors"></select>';
       var element = $compile(html)(scope);
-      scope.$digest();
       scope.$apply(function () {
         scope.selected = 'Green';
       });
@@ -51,7 +50,6 @@ describe('selectpicker', function() {
       scope.colors = [{ id: 10, name: 'Red' }, { id: 20, name: 'Green' }, { id: 30, name: 'Blue' }];
       var html = '<select selectpicker ng-model="selected" ng-options="c.name as c.name for c in colors track by c.name"></select>';
       var element = $compile(html)(scope);
-      scope.$digest();
       scope.$apply(function () {
         scope.selected = 'Green';
       });
