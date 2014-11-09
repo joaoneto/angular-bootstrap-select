@@ -1,28 +1,26 @@
 // supply open and close without load bootstrap.js
 angular.module('angular-bootstrap-select.extra', [])
-  .directive('toggle', function () {
+  .directive('dropdownToggle', function () {
     return {
       restrict: 'A',
       link: function (scope, element, attrs) {
-        // prevent directive from attaching itself to everything that defines a toggle attribute
-        if (!element.hasClass('selectpicker')) {
-          return;
-        }
-        
-        var target = element.parent();
-        var toggleFn = function () {
-          target.toggleClass('open');
-        };
-        var hideFn = function () {
-          target.removeClass('open');
+        var hideFn = function (e) {
+          angular.element('.bootstrap-select').removeClass('open');
         };
 
-        element.on('click', toggleFn);
-        element.next().on('click', hideFn);
+        var toggleFn = function (e) {
+          hideFn();
+          e.stopPropagation();
+          angular.element(this).toggleClass('open');
+        };
+
+        var doc = angular.element(document);
+
+        doc.on('click.bootstrapSelect', '.bootstrap-select', toggleFn);
+        doc.on('click.bootstrapSelect', hideFn);
 
         scope.$on('$destroy', function () {
-          element.off('click', toggleFn);
-          element.next().off('click', hideFn);
+          doc.off('.bootstrapSelect');
         });
       }
     };
@@ -32,28 +30,27 @@ angular.module('angular-bootstrap-select', [])
   .directive('selectpicker', ['$parse', function ($parse) {
     return {
       restrict: 'A',
-      require: '?ngModel',
-      priority: 10,
-      compile: function (tElement, tAttrs, transclude) {
-        tElement.selectpicker($parse(tAttrs.selectpicker)());
-        tElement.selectpicker('refresh');
-        return function (scope, element, attrs, ngModel) {
-          if (!ngModel) return;
+      link: function (scope, element, attrs) {
+        element.selectpicker($parse(attrs.selectpicker)());
+        element.selectpicker('refresh');
 
-          scope.$watch(attrs.ngModel, function (newVal, oldVal) {
-            scope.$evalAsync(function () {
-              if (!attrs.ngOptions || /track by/.test(attrs.ngOptions)) element.val(newVal);
-              element.selectpicker('refresh');
-            });
+        scope.$watch(attrs.ngModel, function (newVal, oldVal) {
+          scope.$parent[attrs.ngModel] = newVal;
+          scope.$evalAsync(function () {
+            if (!attrs.ngOptions || /track by/.test(attrs.ngOptions)) element.val(newVal);
+            element.selectpicker('refresh');
           });
+        });
 
-          ngModel.$render = function () {
-            scope.$evalAsync(function () {
-              element.selectpicker('refresh');
-            });
-          }
-        };
+        scope.$on('$destroy', function () {
+          scope.$evalAsync(function () {
+            element.selectpicker('destroy');
+          });
+        });
       }
-        
     };
   }]);
+
+
+
+

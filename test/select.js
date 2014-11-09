@@ -23,7 +23,6 @@ describe('selectpicker', function() {
                     '<option>Relish</option>' +
                   '</select>';
       var element = $compile(html)(scope);
-      scope.$digest();
       scope.$apply(function () {
         scope.selected = 'Ketchup';
       });

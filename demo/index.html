@@ -6,148 +6,95 @@
     <meta name="viewport" content="width=device-width">
     <title>Angular bootstrap-select</title>
 
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../bower_components/bootstrap-select/bootstrap-select.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bower_components/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
 
     <script src="../bower_components/jquery/dist/jquery.js"></script>
-    <script src="../bower_components/bootstrap-select/bootstrap-select.js"></script>
+    <script src="../bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
 
     <script src="../src/angular-bootstrap-select.js"></script>
-
-    <script src="marked.js"></script>
-    <script src="selectDemo.js"></script>
 </head>
 <body>
     <div role="main">
         <div class="container">
-            <section id="directives-bootstrap-select" ng-controller="SelectCtrl">
-                <div class="page-header">
-                    <h1>Angular bootstrap-select</h1>
-                    <code>foo:                      {{formData.foo || 'undefined'}}</code><br>
-                    <code>color:                    {{formData.color || 'undefined'}}</code><br>
-                    <code>Form1.$dirty:             {{form1.$dirty | json}}</code><br>
-                    <code>Form1.$pristine:          {{form1.$pristine | json}}</code><br>
-                    <code>Form1.field1.$dirty:      {{form1.field1.$dirty | json}}</code><br>
-                    <code>Form1.field1.$invalid:    {{form1.field1.$invalid | json}}</code><br>
-                    <code>Form1.field1.$valid:      {{form1.field1.$valid | json}}</code><br>
-                    <code>Form1.field1.$viewValue:  {{form1.field1.$viewValue | json}}</code><br>
-                    <code>Form1.field1.$modelValue: {{form1.field1.$modelValue | json}}</code><br>
-                    <code>Form1.field1.$error:      {{form1.field1.$error | json}}</code><br>
-                    <code>Form1.field2:             {{form1.field2.$error | json}}</code><br>
+            <script>
+            (function () {
+                var selectDemoApp = angular.module('selectDemoApp', [
+                    'angular-bootstrap-select',
+                    'angular-bootstrap-select.extra'
+                ]);
+
+                selectDemoApp.controller('SimpleUsageCtrl', function ($scope, $timeout) {
+                    $scope.model = '';
+                    $scope.colors = ['Mustard', 'Ketchup', 'Relish'];
+                    $scope.repeater = [
+                      { title: 'one' },
+                      { title: 'two' },
+                      { title: 'three' }
+                    ];
+                    $scope.selectWithOptionsIsVisible = true;
+                });
+            })();
+            </script>
+
+            <!-- Simple usage -->
+            <section id="simple-usage" ng-controller="SimpleUsageCtrl" dropdown-toggle>
+                <h1>Simple usage</h1>
+
+                <div>
+                    <h3>Works with ngIf</h3>
+                    <div>Model value: <code>{{model || "''"}}</code></div>
+                    <div>Show/Hide <input type="checkbox" ng-model="selectWithOptionsIsVisible"></div>
+
+                    <div ng-if="selectWithOptionsIsVisible">
+                        <select class="dropup" selectpicker="{ dropupAuto: false }" ng-model="model">
+                            <option value="">Select one</option>
+                            <option>Mustard</option>
+                            <option>Ketchup</option>
+                            <option>Relish</option>
+                        </select>
+                    </div>
+
+                    <h3>Works without ngIf</h3>
+                    <div>Model value: <code>{{model || "''"}}</code></div>
+                    <select selectpicker="" ng-model="model">
+                        <option value="">Select one</option>
+                        <option>Mustard</option>
+                        <option>Ketchup</option>
+                        <option>Relish</option>
+                    </select>
+
+                    <h3>Works with optgroup</h3>
+                    <div>
+                        <select selectpicker ng-model="model">
+                            <option value="">Select one</option>
+                            <optgroup label="Favorite">
+                                <option>Mustard</option>
+                                <option>Ketchup</option>
+                            </optgroup>
+                            <optgroup label="Other">
+                                <option>Relish</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <h3>Works with ngOptions</h3>
+                    <div>Model value: <code>{{model || "''"}}</code></div>
+                    <div>Colors: <code>{{colors | json}}</code></div>
+                    <select selectpicker ng-model="model" ng-options="c as c for c in colors">
+                        <option value="">Select one</option>
+                    </select>
+                  
+                    <h3>Works with ngRepeat</h3>
+                    <div ng-repeat="select in repeater">
+                        <label>{{select.title}} {{model}}</label>
+                        <select selectpicker ng-model="$parent.model" ng-options="c as c for c in colors">
+                            <option value="">Select one</option>
+                        </select>
+                    </div>
                 </div>
-                <select toggle selectpicker ng-hide="false" ng-model="teste">
-                    <option value="">Select one</option>
-                    <option>Mustard</option>
-                    <option>Ketchup</option>
-                    <option>Relish</option>
-                </select>
-                <form name="form1" ng-submit="submit()" novalidate>
-                    <select name="field1" ng-model="formData.foo" toggle selectpicker="{}" ng-required="true">
-                        <option value="">Select one</option>
-                        <option>Mustard</option>
-                        <option>Ketchup</option>
-                        <option>Relish</option>
-                    </select>
-
-                    <select name="field2" ng-model="formData.foo" class="dropup" toggle selectpicker="{ dropupAuto: false }" ng-required="false">
-                        <option value="">Select one</option>
-                        <option>Mustard</option>
-                        <option>Ketchup</option>
-                        <option>Relish</option>
-                    </select>
-
-                    <select name="field3" toggle ng-model="formData.color.name" selectpicker class="" ng-options="color.name as color.name for color in colors">
-                        <option value="">Select one</option>
-                    </select>
-
-                    <select name="field4" toggle ng-model="formData.color.name" selectpicker class="" ng-options="color.name as color.name for color in colors track by color.name">
-                        <option value="">Select one</option>
-                    </select>
-
-                    <button type="submit">Submit</button>
-                </form>
-
             </section>
-
-            <section id="readme">
-                <h2>README.md</h2>
-<marked>
-angular-bootstrap-select
-========================
-
-Directive to wrap [bootstrap-select](http://silviomoreto.github.io/bootstrap-select/). This directive aims to proxy the behavior of the plugin bootstrap-select, in the AngularJS style, see the documentation on the [plugin page](http://silviomoreto.github.io/bootstrap-select/).
-
-## Requirements
-- ([jQuery](http://jquery.com/))
-- ([bootstrap-select](http://silviomoreto.github.io/bootstrap-select/))
-- ([AngularJS](http://angularjs.org/))
-
-## Install
-
-```bash
-$ bower install angular-bootstrap-select
-```
-
-## Examples
-
-### [Live demo](http://joaoneto.github.io/angular-bootstrap-select/)
-
-### Demo in `demo/index.html` folder
-
-### Html snippet
-
-```html
-&lt;script src="../bower_components/angular-bootstrap-select/build/angular-bootstrap-select.min.js"&gt;&lt;/script&gt;
-
-&lt;select class="selectpicker"&gt;
-  &lt;option&gt;Mustard&lt;/option&gt;
-  &lt;option&gt;Ketchup&lt;/option&gt;
-  &lt;option&gt;Relish&lt;/option&gt;
-&lt;/select&gt;
-```
-
-## TODO
-
-Implement ngOptions with selectpicker
-```html
-&lt;select ng-model="form" class="selectpicker" ng-options="color.name for color in colors"&gt;&lt;/select&gt;
-```
-
-## Testing
-
-```bash
-$ npm install
-$ bower install
-$ grunt
-```
-
-## License
-The MIT License (MIT)
-
-Copyright (c) 2014 João Pinto Neto
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-</marked>
-            </section>
-
         </div>
     </div>
 
