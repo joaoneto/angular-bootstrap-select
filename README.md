@@ -9,16 +9,14 @@ Directive to wrap [bootstrap-select](http://silviomoreto.github.io/bootstrap-sel
 - ([AngularJS](http://angularjs.org/))
 
 ## Install
-
 ```bash
 $ bower install angular-bootstrap-select
 ```
 
 ## Examples
-
-### [Live demo](http://joaoneto.github.io/angular-bootstrap-select/)
-
-### Demo in `demo/index.html` folder
+- ./demo/index.html
+- [Live demo](http://joaoneto.github.io/angular-bootstrap-select/)
+- [Codepen.io](http://codepen.io/joaoneto/pen/azoEdG)
 
 ### Html snippet
 
@@ -30,13 +28,6 @@ $ bower install angular-bootstrap-select
   <option>Ketchup</option>
   <option>Relish</option>
 </select>
-```
-
-## TODO
-
-Implement ngOptions with selectpicker
-```html
-<select ng-model="form" class="selectpicker" ng-options="color.name for color in colors"></select>
 ```
 
 ## Testing
