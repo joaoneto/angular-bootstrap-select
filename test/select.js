@@ -49,6 +49,7 @@ describe('selectpicker', function() {
       scope.colors = [{ id: 10, name: 'Red' }, { id: 20, name: 'Green' }, { id: 30, name: 'Blue' }];
       var html = '<select selectpicker ng-model="selected" ng-options="c.name as c.name for c in colors track by c.name"></select>';
       var element = $compile(html)(scope);
+      scope.$digest();
       scope.$apply(function () {
         scope.selected = 'Green';
       });
@@ -63,7 +64,8 @@ describe('selectpicker', function() {
       var html = '<select selectpicker ng-model="selected" ng-options="c.name as c.name for c in colors track by c.id"></select>';
       var element = $compile(html)(scope);
       scope.$digest();
-      element.selectpicker('val', '20');
+      element.selectpicker('val', 20);
+      element.trigger('change');
       expect(scope.selected).toEqual('Green');
     });
   });
@@ -75,7 +77,8 @@ describe('selectpicker', function() {
       var html = '<select selectpicker ng-model="selected" ng-options="c.name as c.name for c in colors track by c.name"></select>';
       var element = $compile(html)(scope);
       scope.$digest();
-      element.selectpicker('val', 'Green');
+      element.selectpicker('val', 'Green')
+      element.trigger('change');
       expect(scope.selected).toEqual('Green');
     });
   });
