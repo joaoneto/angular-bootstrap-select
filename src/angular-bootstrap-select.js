@@ -132,6 +132,13 @@ function selectpickerDirective($parse) {
         });
       });
 
+      if (attrs.ngDisabled) {
+        scope.$watch(attrs.ngDisabled, function (newVal, oldVal) {
+          element.prop('disabled', newVal);
+          element.selectpicker('refresh');
+        });
+      }
+
       scope.$on('$destroy', function () {
         scope.$evalAsync(function () {
           element.selectpicker('destroy');
@@ -140,5 +147,3 @@ function selectpickerDirective($parse) {
     }
   };
 }
-
-
