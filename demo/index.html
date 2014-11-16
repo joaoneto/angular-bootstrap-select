@@ -6,43 +6,51 @@
     <meta name="viewport" content="width=device-width">
     <title>Angular bootstrap-select</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../bower_components/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
-
-    <script src="../bower_components/jquery/dist/jquery.js"></script>
-    <script src="../bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
-    <script src="../bower_components/angular/angular.js"></script>
-
-    <script src="../src/angular-bootstrap-select.js"></script>
 </head>
 <body>
     <div role="main">
         <div class="container">
-            <script>
-            (function () {
-                var selectDemoApp = angular.module('selectDemoApp', [
-                    'angular-bootstrap-select',
-                    'angular-bootstrap-select.extra'
-                ]);
+            <!-- Extras -->
+            <section id="extras" ng-controller="ExtrasCtrl">
+                <h1>Extras</h1>
+                <div>
+                    <h3>Not popup without dropdownToggle directive</h3>
+                    <!-- This extra directive provide dropdown open and close without loading bootstrap.js -->
+                    <select class="selectpicker">
+                        <option value="">Select one</option>
+                        <option>Mustard</option>
+                        <option>Ketchup</option>
+                        <option>Relish</option>
+                    </select>
 
-                selectDemoApp.controller('SimpleUsageCtrl', function ($scope, $timeout) {
-                    $scope.model = '';
-                    $scope.colors = ['Mustard', 'Ketchup', 'Relish'];
-                    $scope.repeater = [
-                      { title: 'one' },
-                      { title: 'two' },
-                      { title: 'three' }
-                    ];
-                    $scope.selectWithOptionsIsVisible = true;
-                });
-            })();
-            </script>
+                    <h3>Popup with dropdownToggle directive</h3>
+                    <dropdown-toggle>
+                      <select class="selectpicker">
+                          <option value="">Select one</option>
+                          <option>Mustard</option>
+                          <option>Ketchup</option>
+                          <option>Relish</option>
+                      </select>
+                    </dropdown-toggle>
+                </div>
+            </section>
 
             <!-- Simple usage -->
-            <section id="simple-usage" ng-controller="SimpleUsageCtrl" dropdown-toggle>
+            <!-- <section id="simple-usage" ng-controller="SimpleUsageCtrl" class="dropdown-toggle">
                 <h1>Simple usage</h1>
 
                 <div>
+                    <h3>Works with simple select</h3>
+                    <div>Model value: <code>{{model || "''"}}</code></div>
+                    <select selectpicker="" ng-model="model">
+                        <option value="">Select one</option>
+                        <option>Mustard</option>
+                        <option>Ketchup</option>
+                        <option>Relish</option>
+                    </select>
+
                     <h3>Works with ngIf</h3>
                     <div>Model value: <code>{{model || "''"}}</code></div>
                     <div>Show/Hide <input type="checkbox" ng-model="selectWithOptionsIsVisible"></div>
@@ -55,15 +63,6 @@
                             <option>Relish</option>
                         </select>
                     </div>
-
-                    <h3>Works without ngIf</h3>
-                    <div>Model value: <code>{{model || "''"}}</code></div>
-                    <select selectpicker="" ng-model="model">
-                        <option value="">Select one</option>
-                        <option>Mustard</option>
-                        <option>Ketchup</option>
-                        <option>Relish</option>
-                    </select>
 
                     <h3>Works with optgroup</h3>
                     <div>
@@ -85,7 +84,7 @@
                     <select selectpicker ng-model="model" ng-options="c as c for c in colors">
                         <option value="">Select one</option>
                     </select>
-                  
+
                     <h3>Works with ngRepeat</h3>
                     <div ng-repeat="select in repeater">
                         <label>{{select.title}} {{model}}</label>
@@ -94,9 +93,15 @@
                         </select>
                     </div>
                 </div>
-            </section>
+            </section> -->
         </div>
     </div>
 
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+
+    <script src="../src/angular-bootstrap-select.js"></script>
+    <script src="select-demo-app.js"></script>
 </body>
 </html>

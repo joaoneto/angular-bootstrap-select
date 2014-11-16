@@ -8,12 +8,14 @@
   "license": "MIT",
   "ignore": [
     "**/.*",
+    "docs",
     "node_modules",
     "bower_components",
     "components",
     "test*",
     "demo*",
     "Gruntfile.js",
+    "gulpfile.js",
     "package.json",
     "CHANGELOG.md"
   ],

@@ -7,10 +7,10 @@ var paths = {
   dist: 'dist',
   demo: 'demo',
   test: 'test',
-  scripts: path.join('src', '**', '*.js'),
 };
 
 var files = {
+  scripts: path.join(paths.src, '**', '*.js'),
   demo: path.join(paths.demo, '**', '*'),
 };
 
@@ -23,4 +23,3 @@ gulp.task('watch:demo', function () {
 gulp.task('serve', ['watch:demo'], function () {
   connect.server({ livereload: true });
 });
-
