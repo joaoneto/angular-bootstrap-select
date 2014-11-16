@@ -8,7 +8,7 @@ angular.module('angular-bootstrap-select.extra', [])
         if (!element.hasClass('selectpicker')) {
           return;
         }
-        
+
         var target = element.parent();
         var toggleFn = function () {
           target.toggleClass('open');
@@ -39,14 +39,14 @@ angular.module('angular-bootstrap-select', [])
         tElement.selectpicker('refresh');
         return function (scope, element, attrs, ngModel) {
           if (!ngModel) return;
-          
-          if(attrs.ngDisabled) {
+
+          if (attrs.ngDisabled) {
         	  scope.$watch(attrs.ngDisabled, function (newVal, oldVal) {
-        		  element.prop('disabled', newVal);
-        		  element.selectpicker('refresh');        		  
-              });
+              element.prop('disabled', newVal);
+              element.selectpicker('refresh');
+            });
           }
-          
+
           scope.$watch(attrs.ngModel, function (newVal, oldVal) {
             scope.$evalAsync(function () {
               if (!attrs.ngOptions || /track by/.test(attrs.ngOptions)) element.val(newVal);
@@ -61,6 +61,6 @@ angular.module('angular-bootstrap-select', [])
           }
         };
       }
-        
+
     };
   }]);
