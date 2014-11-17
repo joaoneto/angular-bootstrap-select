@@ -2,10 +2,10 @@
 angular.module('angular-bootstrap-select.extra', [])
   .directive('toggle', function () {
     return {
-      restrict: 'A',
+      restrict: 'ACE',
       link: function (scope, element, attrs) {
         // prevent directive from attaching itself to everything that defines a toggle attribute
-        if (!element.hasClass('selectpicker')) {
+        if (!element.hasClass('selectpicker') && !attrs.selectpicker && element[0].localName !== 'selectpicker')) {
           return;
         }
         
@@ -31,12 +31,13 @@ angular.module('angular-bootstrap-select.extra', [])
 angular.module('angular-bootstrap-select', [])
   .directive('selectpicker', ['$parse', function ($parse) {
     return {
-      restrict: 'A',
+      restrict: 'ACE',
       require: '?ngModel',
       priority: 10,
       compile: function (tElement, tAttrs, transclude) {
         tElement.selectpicker($parse(tAttrs.selectpicker)());
         tElement.selectpicker('refresh');
+        
         return function (scope, element, attrs, ngModel) {
           if (!ngModel) return;
           
