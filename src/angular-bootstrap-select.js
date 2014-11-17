@@ -8,7 +8,7 @@ angular.module('angular-bootstrap-select.extra', [])
         if (!element.hasClass('selectpicker') && !attrs.selectpicker && element[0].localName !== 'selectpicker')) {
           return;
         }
-        
+
         var target = element.parent();
         var toggleFn = function () {
           target.toggleClass('open');
@@ -31,7 +31,7 @@ angular.module('angular-bootstrap-select.extra', [])
 angular.module('angular-bootstrap-select', [])
   .directive('selectpicker', ['$parse', function ($parse) {
     return {
-      restrict: 'ACE',
+      restrict: 'A',
       require: '?ngModel',
       priority: 10,
       compile: function (tElement, tAttrs, transclude) {
@@ -40,14 +40,14 @@ angular.module('angular-bootstrap-select', [])
         
         return function (scope, element, attrs, ngModel) {
           if (!ngModel) return;
-          
-          if(attrs.ngDisabled) {
+
+          if (attrs.ngDisabled) {
         	  scope.$watch(attrs.ngDisabled, function (newVal, oldVal) {
-        		  element.prop('disabled', newVal);
-        		  element.selectpicker('refresh');        		  
-              });
+              element.prop('disabled', newVal);
+              element.selectpicker('refresh');
+            });
           }
-          
+
           scope.$watch(attrs.ngModel, function (newVal, oldVal) {
             scope.$evalAsync(function () {
               if (!attrs.ngOptions || /track by/.test(attrs.ngOptions)) element.val(newVal);
@@ -62,6 +62,6 @@ angular.module('angular-bootstrap-select', [])
           }
         };
       }
-        
+
     };
   }]);
