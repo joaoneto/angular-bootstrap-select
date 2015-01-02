@@ -8,8 +8,9 @@ angular.module('selectDemoApp', [
 })
 
 .controller('SimpleUsageCtrl', function ($scope, $timeout) {
-  $scope.model = '';
+  $scope.model = 'Mustard';
   $scope.colors = ['Mustard', 'Ketchup', 'Relish'];
+
   $scope.repeater = [
     { title: 'one' },
     { title: 'two' },
