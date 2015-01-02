@@ -178,27 +178,25 @@ function selectpickerDirective($parse) {
   return {
     restrict: 'A',
     link: function (scope, element, attrs) {
-      if (element.hasClass('selectpicker')) return;
-
-      element.selectpicker($parse(attrs.selectpicker)());
-
-      scope.$watch(attrs.ngModel, function (newVal, oldVal) {
-        scope.$parent[attrs.ngModel] = newVal;
-        scope.$evalAsync(function () {
-          if (!attrs.ngOptions || /track by/.test(attrs.ngOptions)) element.val(newVal);
-          element.selectpicker('refresh');
-        });
-      });
-
-      if (attrs.ngDisabled) {
-        scope.$watch(attrs.ngDisabled, function (newVal, oldVal) {
-          element.prop('disabled', newVal);
+      function refresh() {
+        scope.$applyAsync(function () {
           element.selectpicker('refresh');
         });
       }
 
+      element.selectpicker($parse(attrs.selectpicker)());
+      element.selectpicker('refresh');
+
+      if (attrs.ngModel) {
+        scope.$watch(attrs.ngModel, refresh, true);
+      }
+
+      if (attrs.ngDisabled) {
+        scope.$watch(attrs.ngDisabled, refresh, true);
+      }
+
       scope.$on('$destroy', function () {
-        scope.$evalAsync(function () {
+        scope.$applyAsync(function () {
           element.selectpicker('destroy');
         });
       });
