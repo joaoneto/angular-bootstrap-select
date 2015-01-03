@@ -51,6 +51,7 @@
                     </select>
 
                     <h3>Works with ngIf</h3>
+                    <p>To work with ngIf, set ng-model to $parent <code>ng-model="$parent.model"</code></p>
                     <div>Model value: <code>{{model || "''"}}</code></div>
                     <div>Show/Hide <input type="checkbox" ng-model="selectWithOptionsIsVisible"></div>
 
@@ -63,10 +64,23 @@
                         </select>
                     </div>
 
+                    <h3>Works with ngDisable</h3>
+                    <div>Model value: <code>{{model || "''"}}</code></div>
+                    <div>Enabled/Disabled <input type="checkbox" ng-model="selectWithNgDisabled"></div>
+
+                    <div>
+                        <select id="selectVisible" ng-disabled="selectWithNgDisabled" selectpicker="{}" ng-model="model">
+                            <option value="">Select one</option>
+                            <option>Mustard</option>
+                            <option>Ketchup</option>
+                            <option>Relish</option>
+                        </select>
+                    </div>
+
                     <h3>Works with optgroup</h3>
                     <div>Model value: <code>{{model || "''"}}</code></div>
                     <div>
-                        <select selectpicker ng-disabled="selectWithOptionsIsVisible" ng-model="model">
+                        <select selectpicker ng-model="model">
                             <option value="">Select one</option>
                             <optgroup label="Favorite">
                                 <option>Mustard</option>
@@ -88,6 +102,7 @@
                     </div>
 
                     <h3>Works with ngRepeat</h3>
+                    <p>To work with ngRepeat, set ng-model to $parent <code>ng-model="$parent.model"</code></p>
                     <div ng-repeat="select in repeater">
                         <div>
                             <label>{{select.title}} {{model}}</label>
@@ -96,6 +111,19 @@
                             </select>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <!-- Styles -->
+            <section id="simple-usage" ng-controller="StyleCtrl" dropdown-toggle>
+                <h1>Style usage</h1>
+                <div>
+                    <h3>You can set different Bootstrap classes via the data-style attribute</h3>
+                    <select selectpicker="" data-style="btn-{{color}}" ng-model="color">
+                        <option value="primary">primary</option>
+                        <option value="info">info</option>
+                        <option value="success">success</option>
+                    </select>
                 </div>
             </section>
         </div>

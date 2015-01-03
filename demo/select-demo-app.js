@@ -18,3 +18,7 @@ angular.module('selectDemoApp', [
   ];
   $scope.selectWithOptionsIsVisible = true;
 })
+
+.controller('StyleCtrl', function ($scope, $timeout) {
+  $scope.color = 'success';
+})

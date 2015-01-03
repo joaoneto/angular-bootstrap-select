@@ -178,11 +178,17 @@ function selectpickerDirective($parse) {
   return {
     restrict: 'A',
     link: function (scope, element, attrs) {
-      function refresh() {
+      function refresh(newVal) {
         scope.$applyAsync(function () {
+          if (!attrs.ngOptions || /track by/.test(attrs.ngOptions)) element.val(newVal);
           element.selectpicker('refresh');
         });
       }
+
+      attrs.$observe('style', function (val) {
+        console.log(val)
+        element.selectpicker('setStyle', val);
+      })
 
       element.selectpicker($parse(attrs.selectpicker)());
       element.selectpicker('refresh');
