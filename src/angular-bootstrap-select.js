@@ -177,6 +177,7 @@ angular.module('angular-bootstrap-select', [])
 function selectpickerDirective($parse) {
   return {
     restrict: 'A',
+    priority: 1000,
     link: function (scope, element, attrs) {
       function refresh(newVal) {
         scope.$applyAsync(function () {
@@ -185,10 +186,14 @@ function selectpickerDirective($parse) {
         });
       }
 
-      attrs.$observe('style', function (val) {
-        console.log(val)
-        element.selectpicker('setStyle', val);
-      })
+      attrs.$observe('spTheme', function (val) {
+        scope.$applyAsync(function () {
+          element.data('selectpicker').$button.removeClass(function (i, c) {
+            return (c.match(/(^|\s)?btn-\S+/g) || []).join(' ');
+          });
+          element.selectpicker('setStyle', val);
+        });
+      });
 
       element.selectpicker($parse(attrs.selectpicker)());
       element.selectpicker('refresh');

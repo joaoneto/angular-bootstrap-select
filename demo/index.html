@@ -118,11 +118,13 @@
             <section id="simple-usage" ng-controller="StyleCtrl" dropdown-toggle>
                 <h1>Style usage</h1>
                 <div>
-                    <h3>You can set different Bootstrap classes via the data-style attribute</h3>
-                    <select selectpicker="" data-style="btn-{{color}}" ng-model="color">
-                        <option value="primary">primary</option>
-                        <option value="info">info</option>
-                        <option value="success">success</option>
+                    <h3>Works with data-style</h3>
+                    <p>You can set different Bootstrap classes via the data-style attribute</p>
+                    <select selectpicker="" sp-theme="btn-{{color}}" ng-model="color">
+                        <option value="primary">btn-primary</option>
+                        <option value="info">btn-info</option>
+                        <option value="success">btn-success</option>
+                        <option value="danger">btn-danger</option>
                     </select>
                 </div>
             </section>
