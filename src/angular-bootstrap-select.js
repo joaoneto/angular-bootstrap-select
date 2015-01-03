@@ -143,7 +143,7 @@ function dropdownCloseDirective() {
  */
 
 angular.module('angular-bootstrap-select', [])
-  .directive('selectpicker', ['$parse', selectpickerDirective]);
+  .directive('selectpicker', ['$parse', '$timeout', selectpickerDirective]);
 
 /**
  * @ngdoc directive
@@ -174,7 +174,7 @@ angular.module('angular-bootstrap-select', [])
  * ```
  */
 
-function selectpickerDirective($parse) {
+function selectpickerDirective($parse, $timeout) {
   return {
     restrict: 'A',
     priority: 1000,
@@ -187,7 +187,7 @@ function selectpickerDirective($parse) {
       }
 
       attrs.$observe('spTheme', function (val) {
-        scope.$applyAsync(function () {
+        $timeout(function () {
           element.data('selectpicker').$button.removeClass(function (i, c) {
             return (c.match(/(^|\s)?btn-\S+/g) || []).join(' ');
           });
@@ -195,8 +195,10 @@ function selectpickerDirective($parse) {
         });
       });
 
-      element.selectpicker($parse(attrs.selectpicker)());
-      element.selectpicker('refresh');
+      $timeout(function () {
+        element.selectpicker($parse(attrs.selectpicker)());
+        element.selectpicker('refresh');
+      });
 
       if (attrs.ngModel) {
         scope.$watch(attrs.ngModel, refresh, true);
@@ -207,7 +209,7 @@ function selectpickerDirective($parse) {
       }
 
       scope.$on('$destroy', function () {
-        scope.$applyAsync(function () {
+        $timeout(function () {
           element.selectpicker('destroy');
         });
       });

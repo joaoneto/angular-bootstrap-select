@@ -150,6 +150,25 @@
                         <option data-content="<span class='label label-inverse'>btn-inverse</span>" value="inverse">btn-inverse</option>
                     </select>
                 </div>
+                <div>
+                    <h3>Works with option data-icon</h3>
+                    <p>TODO: interpolate</p>
+                    <select selectpicker="" ng-model="color">
+                        <option data-icon="glyphicon glyphicon-search" value="primary">btn-primary</option>
+                        <option data-icon="glyphicon glyphicon-thumbs-up" value="info">btn-info</option>
+                        <option data-icon="glyphicon glyphicon-bell" value="success">btn-success</option>
+                        <option data-icon="glyphicon glyphicon-phone" value="danger">btn-danger</option>
+                        <option data-icon="glyphicon glyphicon-globe" value="warning">btn-warning</option>
+                        <option data-icon="glyphicon glyphicon-play" value="inverse">btn-inverse</option>
+                    </select>
+                </div>
+                <div>
+                    <h3>Works with option data-icon and ngOptions</h3>
+                    <select selectpicker="">
+                      <option value="">Select one</option>
+                      <option ng-repeat="i in icons" value="{{i.id}}" data-icon="{{i.icon}}">{{i.title}}</option>
+                    </select>
+                </div>
             </section>
         </div>
     </div>
