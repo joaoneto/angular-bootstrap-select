@@ -1,4 +1,25 @@
 # Changelog
+## 2015-01-02
+- fix(selectpicker) change value for track by ngOptions only (by João Neto <joaopintoneto@gmail.com>)
+- fix(selectpicker) changed styles to theme attr (by João Neto <joaopintoneto@gmail.com>)
+- feat(selectpicker) added styles interpolation capability (by João Neto <joaopintoneto@gmail.com>)
+- chore(selectpicker) function to refresh with scope.$applyAsync (by João Neto <joaopintoneto@gmail.com>)
+- feat(dropdownClose) Added separated directive to close dropdown (by João Neto <joaopintoneto@gmail.com>)
+
+## 2014-11-16
+- chore(docs) docs wip (by João Neto <joaopintoneto@gmail.com>)
+
+## 2014-11-15
+- chore(gulpfile, package, bower): added gulp tasks and updated packages (by João Neto <joaopintoneto@gmail.com>)
+
+## 2014-11-14
+- add support for ng-disabled (issue #13) (by jasonduley <jason.duley@nasa.gov>)
+
+## 2014-11-09
+- fix tests (by João Neto <joaopintoneto@gmail.com>)
+- Updated README.md (by João Neto <joaopintoneto@gmail.com>)
+- fix ngIf and ngRepeat bug (by João Neto <joaopintoneto@gmail.com>)
+
 ## 2014-11-08
 - fix angularjs and bootstrap-select versions (by João Neto <joaopintoneto@gmail.com>)
 
@@ -7,6 +28,10 @@
 
 ## 2014-08-02
 - fixed ng-required ref #9 (by João Neto <joaopintoneto@gmail.com>)
+
+## 2014-07-27
+- Update angular-bootstrap-select.js (by Aaron Jessen <coding@permagreen.com>)
+- Update 'compile' section to work with Angular 1.3.0 (by Aaron Jessen <coding@permagreen.com>)
 
 ## 2014-06-24
 - updated bower.json dependencies (by João Neto <joaopintoneto@gmail.com>)
