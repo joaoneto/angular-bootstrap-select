@@ -69,7 +69,7 @@
                     <div>Enabled/Disabled <input type="checkbox" ng-model="selectWithNgDisabled"></div>
 
                     <div>
-                        <select id="selectVisible" ng-disabled="selectWithNgDisabled" selectpicker="{}" ng-model="model">
+                        <select id="selectVisible" ng-disabled="selectWithNgDisabled" selectpicker ng-model="model">
                             <option value="">Select one</option>
                             <option>Mustard</option>
                             <option>Ketchup</option>
@@ -118,6 +118,16 @@
             <section id="simple-usage" ng-controller="StyleCtrl" dropdown-toggle>
                 <h1>Style usage</h1>
                 <div>
+                    <h3>Works with selectpicker style option</h3>
+                    <p>You can set different Bootstrap classes via the selectpicker style option</p>
+                    <select selectpicker="{style:'btn-info'}">
+                        <option value="">Select one</option>
+                        <option>Mustard</option>
+                        <option>Ketchup</option>
+                        <option>Relish</option>
+                    </select>
+                </div>
+                <div>
                     <h3>Works with data-style</h3>
                     <p>You can set different Bootstrap classes via the data-style attribute</p>
                     <select selectpicker="" sp-theme="btn-{{color}}" ng-model="color">
@@ -125,6 +135,19 @@
                         <option value="info">btn-info</option>
                         <option value="success">btn-success</option>
                         <option value="danger">btn-danger</option>
+                        <option value="warning">btn-warning</option>
+                        <option value="inverse">btn-inverse</option>
+                    </select>
+                </div>
+                <div>
+                    <h3>Works with option data-content</h3>
+                    <select selectpicker="" ng-model="color">
+                        <option data-content="<span class='label label-primary'>btn-primary</span>" value="primary">btn-primary</option>
+                        <option data-content="<span class='label label-info'>btn-info</span>" value="info">btn-info</option>
+                        <option data-content="<span class='label label-success'>btn-success</span>" value="success">btn-success</option>
+                        <option data-content="<span class='label label-danger'>btn-danger</span>" value="danger">btn-danger</option>
+                        <option data-content="<span class='label label-warning'>btn-warning</span>" value="warning">btn-warning</option>
+                        <option data-content="<span class='label label-inverse'>btn-inverse</span>" value="inverse">btn-inverse</option>
                     </select>
                 </div>
             </section>
