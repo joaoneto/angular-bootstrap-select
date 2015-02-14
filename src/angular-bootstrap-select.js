@@ -216,8 +216,10 @@ function selectpickerDirective($parse, $timeout) {
         });
       });
         
-      var match = attrs.ngOptions.match(NG_OPTIONS_REGEXP);
-      scope.$watch(match[7], refresh);
+      if (attrs.ngOptions) {        
+        var match = attrs.ngOptions.match(NG_OPTIONS_REGEXP);
+        scope.$watch(match[7], refresh);
+      }
     }
   };
 }
