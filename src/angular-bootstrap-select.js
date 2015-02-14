@@ -181,7 +181,6 @@ function selectpickerDirective($parse, $timeout) {
     link: function (scope, element, attrs) {
       function refresh(newVal) {
         scope.$applyAsync(function () {
-          if (attrs.ngOptions && /track by/.test(attrs.ngOptions)) element.val(newVal);
           element.selectpicker('refresh');
         });
       }
