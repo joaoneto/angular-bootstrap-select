@@ -181,7 +181,13 @@ function selectpickerDirective($parse, $timeout) {
     link: function (scope, element, attrs) {
       function refresh(newVal) {
         scope.$applyAsync(function () {
-          if (attrs.ngOptions && /track by/.test(attrs.ngOptions)) element.val(newVal);
+          if (/track by/.test(attrs.ngOptions)) {
+            var trackBy = attrs.ngOptions.substr(attrs.ngOptions.indexOf('track by'));
+            trackBy = trackBy.substring(trackBy.indexOf('.') + 1);
+            element.val(newVal[trackBy]);
+          } else {
+            element.val(newVal);
+          }
           element.selectpicker('refresh');
         });
       }
