@@ -188,7 +188,7 @@ function selectpickerDirective($parse, $timeout) {
           } else {
             element.val(newVal);
           }
-          element.selectpicker('refresh');
+          $(element).selectpicker('refresh');
         });
       }
 
@@ -197,13 +197,13 @@ function selectpickerDirective($parse, $timeout) {
           element.data('selectpicker').$button.removeClass(function (i, c) {
             return (c.match(/(^|\s)?btn-\S+/g) || []).join(' ');
           });
-          element.selectpicker('setStyle', val);
+          $(element).selectpicker('setStyle', val);
         });
       });
 
       $timeout(function () {
-        element.selectpicker($parse(attrs.selectpicker)());
-        element.selectpicker('refresh');
+        $(element).selectpicker($parse(attrs.selectpicker)());
+        $(element).selectpicker('refresh');
       });
 
       if (attrs.ngModel) {
@@ -216,7 +216,7 @@ function selectpickerDirective($parse, $timeout) {
 
       scope.$on('$destroy', function () {
         $timeout(function () {
-          element.selectpicker('destroy');
+          $(element).selectpicker('destroy');
         });
       });
     }
