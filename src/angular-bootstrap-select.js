@@ -183,6 +183,10 @@ function selectpickerDirective($parse, $timeout) {
         scope.$applyAsync(function () {
           if (attrs.ngOptions && /track by/.test(attrs.ngOptions)) element.val(newVal);
           element.selectpicker('refresh');
+
+          element.data('selectpicker').$newElement.removeClass(function (i, c){
+            return (c.match(/ng-[^\s]+/g) || []).join(' ');
+          });
         });
       }
 
