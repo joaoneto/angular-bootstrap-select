@@ -208,6 +208,13 @@ function selectpickerDirective($parse, $timeout) {
         scope.$watch(attrs.ngDisabled, refresh, true);
       }
 
+      if (attrs.ngOptions) {
+        var watch = attrs.ngOptions.match(/in ([A-z0-9]+)$/);
+        if (watch) {
+          scope.$watch(watch[1], refresh, true);
+        }
+      }
+
       scope.$on('$destroy', function () {
         $timeout(function () {
           element.selectpicker('destroy');
