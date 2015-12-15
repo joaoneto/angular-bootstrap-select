@@ -35,8 +35,6 @@ angular.module('angular-bootstrap-select', [])
       require: '?ngModel',
       priority: 10,
       compile: function (tElement, tAttrs, transclude) {
-        tElement.selectpicker($parse(tAttrs.selectpicker)());
-        tElement.selectpicker('refresh');
         return function (scope, element, attrs, ngModel) {
           if (!ngModel) return;
 
@@ -46,12 +44,6 @@ angular.module('angular-bootstrap-select', [])
               element.selectpicker('refresh');
             });
           });
-
-          ngModel.$render = function () {
-            scope.$evalAsync(function () {
-              element.selectpicker('refresh');
-            });
-          }
         };
       }
         
