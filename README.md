@@ -1,5 +1,5 @@
-angular-bootstrap-select
-========================
+(DEPRECATED) angular-bootstrap-select
+=====================================
 
 Directive to wrap [bootstrap-select](http://silviomoreto.github.io/bootstrap-select/). This directive aims to proxy the behavior of the plugin bootstrap-select, in the AngularJS style, see the documentation on the [plugin page](http://silviomoreto.github.io/bootstrap-select/).
 
