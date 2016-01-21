@@ -183,6 +183,10 @@ function selectpickerDirective($parse, $timeout) {
         scope.$applyAsync(function () {
           if (attrs.ngOptions && /track by/.test(attrs.ngOptions)) element.val(newVal);
           element.selectpicker('refresh');
+
+          element.data('selectpicker').$newElement.removeClass(function (i, c){
+            return (c.match(/ng-[^\s]+/g) || []).join(' ');
+          });
         });
       }
 
@@ -206,6 +210,13 @@ function selectpickerDirective($parse, $timeout) {
 
       if (attrs.ngDisabled) {
         scope.$watch(attrs.ngDisabled, refresh, true);
+      }
+
+      if (attrs.ngOptions) {
+        var watch = attrs.ngOptions.match(/in ([A-z0-9]+)$/);
+        if (watch) {
+          scope.$watch(watch[1], refresh, true);
+        }
       }
 
       scope.$on('$destroy', function () {
