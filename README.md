@@ -1,6 +1,9 @@
 (DEPRECATED) angular-bootstrap-select
 =====================================
 
+I decide to unregister this package from the bower, if someone interessed in maintain this with `angular-bootstrap-select` name, that's the chance.
+
+
 Directive to wrap [bootstrap-select](http://silviomoreto.github.io/bootstrap-select/). This directive aims to proxy the behavior of the plugin bootstrap-select, in the AngularJS style, see the documentation on the [plugin page](http://silviomoreto.github.io/bootstrap-select/).
 
 ## Requirements
