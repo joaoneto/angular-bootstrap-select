@@ -181,8 +181,14 @@ function selectpickerDirective($parse, $timeout) {
     link: function (scope, element, attrs) {
       function refresh(newVal) {
         scope.$applyAsync(function () {
-          if (attrs.ngOptions && /track by/.test(attrs.ngOptions)) element.val(newVal);
-          element.selectpicker('refresh');
+          if (/track by/.test(attrs.ngOptions)) {
+            var trackBy = attrs.ngOptions.substr(attrs.ngOptions.indexOf('track by'));
+            trackBy = trackBy.substring(trackBy.indexOf('.') + 1);
+            element.val(newVal[trackBy]);
+          } else {
+            element.val(newVal);
+          }
+          $(element).selectpicker('refresh');
         });
       }
 
@@ -191,13 +197,13 @@ function selectpickerDirective($parse, $timeout) {
           element.data('selectpicker').$button.removeClass(function (i, c) {
             return (c.match(/(^|\s)?btn-\S+/g) || []).join(' ');
           });
-          element.selectpicker('setStyle', val);
+          $(element).selectpicker('setStyle', val);
         });
       });
 
       $timeout(function () {
-        element.selectpicker($parse(attrs.selectpicker)());
-        element.selectpicker('refresh');
+        $(element).selectpicker($parse(attrs.selectpicker)());
+        $(element).selectpicker('refresh');
       });
 
       if (attrs.ngModel) {
@@ -210,7 +216,7 @@ function selectpickerDirective($parse, $timeout) {
 
       scope.$on('$destroy', function () {
         $timeout(function () {
-          element.selectpicker('destroy');
+          $(element).selectpicker('destroy');
         });
       });
     }
