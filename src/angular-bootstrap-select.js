@@ -175,13 +175,15 @@ angular.module('angular-bootstrap-select', [])
  */
 
 function selectpickerDirective($parse, $timeout) {
+  var NG_OPTIONS_REGEXP = /^\s*([\s\S]+?)(?:\s+as\s+([\s\S]+?))?(?:\s+group\s+by\s+([\s\S]+?))?\s+for\s+(?:([\$\w][\$\w]*)|(?:\(\s*([\$\w][\$\w]*)\s*,\s*([\$\w][\$\w]*)\s*\)))\s+in\s+([\s\S]+?)(?:\s+track\s+by\s+([\s\S]+?))?$/;
+
   return {
     restrict: 'A',
     priority: 1000,
     link: function (scope, element, attrs) {
-      function refresh(newVal) {
+      function refresh() {
         scope.$applyAsync(function () {
-          if (attrs.ngOptions && /track by/.test(attrs.ngOptions)) element.val(newVal);
+          if (attrs.ngOptions && / as .* track by/.test(attrs.ngOptions)) element.val(scope.ngModel);
           element.selectpicker('refresh');
         });
       }
@@ -213,6 +215,11 @@ function selectpickerDirective($parse, $timeout) {
           element.selectpicker('destroy');
         });
       });
+        
+      if (attrs.ngOptions) {        
+        var match = attrs.ngOptions.match(NG_OPTIONS_REGEXP);
+        scope.$watch(match[7], refresh);
+      }
     }
   };
 }
