@@ -143,7 +143,7 @@ function dropdownCloseDirective() {
  */
 
 angular.module('angular-bootstrap-select', [])
-  .directive('selectpicker', ['$parse', '$timeout', selectpickerDirective]);
+  .directive('selectpicker', ['$parse', '$timeout', '$document', selectpickerDirective]);
 
 /**
  * @ngdoc directive
@@ -174,7 +174,7 @@ angular.module('angular-bootstrap-select', [])
  * ```
  */
 
-function selectpickerDirective($parse, $timeout) {
+function selectpickerDirective($parse, $timeout, $document) {
   return {
     restrict: 'A',
     priority: 1000,
@@ -212,6 +212,12 @@ function selectpickerDirective($parse, $timeout) {
         $timeout(function () {
           element.selectpicker('destroy');
         });
+      });
+
+      var $parent = angular.element(element.parent());
+      var $doc = angular.element($document);
+      $parent.bind('click', function() {
+        $doc.triggerHandler('click');
       });
     }
   };
